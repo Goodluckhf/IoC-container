@@ -21,7 +21,7 @@
     "@types/node": "^12.0.10",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
-    "eslint": "^6.0.1",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^5.1.0",
     "eslint-plugin-import": "^2.18.0",
@@ -63,5 +63,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "eerror": "2.0.0"
   }
 }

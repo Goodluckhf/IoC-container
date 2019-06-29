@@ -28,14 +28,17 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.test.{ts,js}', '*.spec.{ts,js}', 'test/**/*.{ts,js}'],
+      files: ['*.spec.{ts,js}'],
       env: {
         jest: true,
       },
       rules: {
         'no-console': 'off',
         'import/no-extraneous-dependencies': 'off',
+        'no-new': 'off',
         '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/explicit-member-accessibility': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
         'no-underscore-dangle': 'off',
         'no-restricted-syntax': 'off',
         'no-await-in-loop': 'off',
