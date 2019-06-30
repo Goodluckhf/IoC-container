@@ -106,7 +106,7 @@ const moduleBManifest = {
 ```
 
 ### Class Factory (AutoFactory)
-There some cases when you want create instances in code i.e: Entities, Command pattern https://en.wikipedia.org/wiki/Command_pattern
+There are some cases when you want create instances in code i.e: Entities, Command pattern https://en.wikipedia.org/wiki/Command_pattern
 
 It's very simple if your class doesn't have dependencies so you can create instance just in you code:
 ```javascript
@@ -124,7 +124,7 @@ class Example {
 }
 ```
 But there are some cases when this class has dependencies and you can't just create object because you have to transmit resolved provider.
-But we can follow `js way` :)
+Fortunately we are codding with `Javascript` and so we can follow `js way` :)
 ```javascript
 class Entity {
   constructor(service, name) {
@@ -194,3 +194,19 @@ container.compile();
 const port = container.get('moduleA', 'httpPort');
 http.listen(port);
 ``` 
+
+### Testing
+We provide a comfortable way for testing
+```javascript
+import {TestContainer} from '@ukitgroup/ioc';
+describe('Unit test', () => {
+	const ctx = {}
+	
+	beforeEach(() => {
+		ctx.container = TestContainer.createTestModule([
+		  //... providers definition with mocks
+		])
+		ctx.container.compile();
+	});
+})
+```
