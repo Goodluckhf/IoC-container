@@ -107,5 +107,8 @@
       ]
     }
   },
-  "pkgRoot": "dist"
+  "pkgRoot": "dist",
+  "publishConfig": {
+    "access": "public"
+  }
 }
