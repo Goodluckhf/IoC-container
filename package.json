@@ -1,7 +1,7 @@
 {
   "name": "@ukitgroup/ioc",
   "version": "1.0.0",
-  "description": "declarative and simple IoC container",
+  "description": "Declarative and simple IoC container",
   "main": "index.js",
   "scripts": {
     "build": "tsc --skipLibCheck -p tsconfig.build.json",
@@ -16,6 +16,23 @@
     "semantic-release": "semantic-release"
   },
   "author": "Goodluckhf <Goodluckhf@yandex.ru>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Goodluckhf/IoC-container.git"
+  },
+  "keywords": [
+    "ioc",
+    "di",
+    "dependency injection",
+    "inverse of control"
+  ],
+  "bugs": {
+    "url": "https://github.com/Goodluckhf/IoC-container/issues"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "homepage": "https://github.com/Goodluckhf/IoC-container#readme",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^24.0.15",
