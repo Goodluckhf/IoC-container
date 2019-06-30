@@ -105,7 +105,8 @@
           "release": "patch"
         }
       ]
-    }
+    },
+    "pkgRoot": "dist"
   },
   "publishConfig": {
     "access": "public"
