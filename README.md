@@ -74,40 +74,40 @@ const providerByFactory = {
 
 ### Public/Private scope
 
-By default all providers define in `private scope`.
+By default all providers define in `private` scope.
 If you want to use provider from another module you should define this provider as `public`
 ```javascript
 const moduleAManifest = {
-      moduleName: 'moduleA',
-      providers: [
-        {
-          isPublic: true,
-          token: 'ServiceA',
-          useClass: ServiceA,
-        },
-      ],
-    };
+  moduleName: 'moduleA',
+  providers: [
+	{
+	  isPublic: true,
+	  token: 'ServiceA',
+	  useClass: ServiceA,
+	},
+  ],
+};
 
-    const moduleBManifest = {
-      moduleName: 'moduleB',
-      providers: [
-        {
-          isPublic: true,
-          token: 'ServiceC',
-          useClass: ServiceC,
-          dependencies: [
-            // You should define which module this provider from
-            ['ServiceA', { fromModule: 'moduleA' }],
-          ],
-        },
-      ],
-    };
+const moduleBManifest = {
+  moduleName: 'moduleB',
+  providers: [
+	{
+	  isPublic: true,
+	  token: 'ServiceC',
+	  useClass: ServiceC,
+	  dependencies: [
+		// You should define which module this provider from
+		['ServiceA', { fromModule: 'moduleA' }],
+	  ],
+	},
+  ],
+};
 ```
 
 ### Class Factory (AutoFactory)
 There some cases when you want create instances in code i.e: Entities, Command pattern https://en.wikipedia.org/wiki/Command_pattern
 
-It's very simple if your class doesn't have dependencies so can create instance just in you code:
+It's very simple if your class doesn't have dependencies so you can create instance just in you code:
 ```javascript
 class Entity {
   constructor(name) {
