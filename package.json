@@ -1,6 +1,6 @@
 {
   "name": "@ukitgroup/ioc",
-  "version": "1.0.0",
+  "version": "0.0.0-dev",
   "description": "Declarative and simple IoC container",
   "main": "dist/index.js",
   "scripts": {
