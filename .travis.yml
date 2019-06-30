@@ -21,11 +21,14 @@ branches:
   except:
     - /^v\d+\.\d+\.\d+$/
 
+install:
+  - npm i -g npm@6
+
 before_script:
   - npm prune
 script:
   - npm run lint
-  - npm run test:cover
+  - npm run test:cov
   - npm run build
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
