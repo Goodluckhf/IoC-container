@@ -1,3 +1,4 @@
+sudo: false
 language: node_js
 
 cache:
@@ -11,40 +12,23 @@ notifications:
     on_success: never
     on_failure: always
 
+node_js:
+  - '10'
+  - '9'
+  - '8'
+
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
 
-stages:
-  - lint
-  - test
-  - types
-  - name: release
-    if: branch = master
-jobs:
-  include:
-    - stage: lint
-      node_js:
-        - '10.12'
-      before_script:
-        - npm prune
-      script:
-        - npm run lint
-    - stage: test
-      node_js:
-        - '8'
-        - '10'
-      script:
-        - npm run test:cov
-      after_success:
-        - cat coverage/lcov.info | node_modules/.bin/coveralls
-    - stage: types
-      node_js:
-        - '10'
-      script:
-        - npm run build
-    - stage: release
-      node_js:
-        - '8'
-      script:
-        - npm run semantic-release
+before_script:
+  - npm prune
+script:
+  - npm run lint
+  - npm run test:cover
+  - npm run build
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    npm run report-coverage;
+    ./node_modules/.bin/travis-deploy-once && npm run semantic-release;
+    fi
