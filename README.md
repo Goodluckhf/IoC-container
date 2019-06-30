@@ -106,7 +106,7 @@ const moduleBManifest = {
 ```
 
 ### Class Factory (AutoFactory)
-There are some cases when you want create instances in code i.e: Entities, Command pattern https://en.wikipedia.org/wiki/Command_pattern
+There are some cases when you want create instances in code i.e: Entities, [Command pattern](https://en.wikipedia.org/wiki/Command_pattern)
 
 It's very simple if your class doesn't have dependencies so you can create instance just in you code:
 ```javascript
@@ -210,3 +210,10 @@ describe('Unit test', () => {
 	});
 })
 ```
+
+More examples you can find in [integration tests](https://github.com/Goodluckhf/IoC-container/tree/master/src/integration-tests)
+
+
+### TODO:
+* support decorators with typescript
+* TestContainer for integration tests

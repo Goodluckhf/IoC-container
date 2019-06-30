@@ -2,7 +2,7 @@
   "name": "@ukitgroup/ioc",
   "version": "1.0.0",
   "description": "Declarative and simple IoC container",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc --skipLibCheck -p tsconfig.build.json",
     "prebuild": "rimraf ./dist",
@@ -106,5 +106,6 @@
         }
       ]
     }
-  }
+  },
+  "pkgRoot": "dist"
 }
