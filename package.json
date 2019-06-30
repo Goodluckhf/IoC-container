@@ -1,0 +1,113 @@
+{
+  "name": "@ukitgroup/ioc",
+  "version": "1.0.0",
+  "description": "Declarative and simple IoC container",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --skipLibCheck -p tsconfig.build.json",
+    "prebuild": "rimraf ./dist",
+    "lint": "eslint --ignore-path .gitignore \"**/*.{js,ts}\"",
+    "lint:fix": "eslint --fix --ignore-path .gitignore \"**/*.{js,ts}\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "report-coverage": "cat coverage/lcov.info | coveralls",
+    "semantic-release": "semantic-release"
+  },
+  "author": "Goodluckhf <Goodluckhf@yandex.ru>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Goodluckhf/IoC-container.git"
+  },
+  "keywords": [
+    "ioc",
+    "di",
+    "dependency injection",
+    "inverse of control"
+  ],
+  "bugs": {
+    "url": "https://github.com/Goodluckhf/IoC-container/issues"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "homepage": "https://github.com/Goodluckhf/IoC-container#readme",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.10",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
+    "coveralls": "^3.0.4",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^5.1.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^2.7.0",
+    "jest": "^24.8.0",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.18.2",
+    "rimraf": "^2.6.3",
+    "semantic-release": "^15.13.18",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tsconfig-paths": "^3.8.0",
+    "typescript": "^3.5.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node",
+    "globals": {
+      "ts-jest": {
+        "diagnostics": {
+          "warnOnly": true
+        }
+      }
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix --ignore-path .gitignore",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "eerror": "2.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "release": {
+    "analyzeCommits": {
+      "preset": "angular",
+      "releaseRules": [
+        {
+          "type": "docs",
+          "release": "patch"
+        },
+        {
+          "type": "refactor",
+          "release": "patch"
+        }
+      ]
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

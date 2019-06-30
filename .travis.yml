@@ -1,0 +1,37 @@
+sudo: false
+language: node_js
+
+cache:
+  directories:
+    - node_modules
+
+notifications:
+  email:
+    recipients:
+      - goodluckhf@yandex.ru
+    on_success: never
+    on_failure: always
+
+node_js:
+  - '10'
+  - '9'
+  - '8'
+
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
+
+install:
+  - npm i -g npm@6
+
+before_script:
+  - npm prune
+script:
+  - npm run lint
+  - npm run test:cov
+  - npm run build
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    npm run report-coverage;
+    ./node_modules/.bin/travis-deploy-once && npm run semantic-release;
+    fi
