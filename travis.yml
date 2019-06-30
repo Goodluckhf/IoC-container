@@ -1,0 +1,50 @@
+language: node_js
+
+cache:
+  directories:
+    - node_modules
+
+notifications:
+  email:
+    recipients:
+      - goodluckhf@yandex.ru
+    on_success: never
+    on_failure: always
+
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
+
+stages:
+  - lint
+  - test
+  - types
+  - name: release
+    if: branch = master
+jobs:
+  include:
+    - stage: lint
+      node_js:
+        - '10.12'
+      before_script:
+        - npm prune
+      script:
+        - npm run lint
+    - stage: test
+      node_js:
+        - '8'
+        - '10'
+      script:
+        - npm run test:cov
+      after_success:
+        - cat coverage/lcov.info | node_modules/.bin/coveralls
+    - stage: types
+      node_js:
+        - '10'
+      script:
+        - npm run build
+    - stage: release
+      node_js:
+        - '8'
+      script:
+        - npm run semantic-release
