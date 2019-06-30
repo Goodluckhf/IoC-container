@@ -12,11 +12,6 @@ notifications:
     on_success: never
     on_failure: always
 
-node_js:
-  - '10'
-  - '9'
-  - '8'
-
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
@@ -24,14 +19,34 @@ branches:
 install:
   - npm i -g npm@6
 
-before_script:
-  - npm prune
-script:
-  - npm run lint
-  - npm run test:cov
-  - npm run build
-after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    npm run report-coverage;
-    ./node_modules/.bin/travis-deploy-once && npm run semantic-release;
-    fi
+stages:
+  - lint
+  - test
+  - name: release
+    if: branch = master
+jobs:
+  include:
+    - stage: lint
+      node_js:
+        - '10'
+      before_script:
+        - npm prune
+      script:
+        - npm run lint
+        - npm run build
+    - stage: test
+      node_js:
+        - '10'
+        - '9'
+        - '8'
+      before_script:
+        - npm prune
+      script:
+        - npm run test:cov
+      after_success:
+        - npm run report-coverage
+    - stage: release
+      node_js: '8'
+      script:
+        - npm run build
+        - npm run semantic-release
