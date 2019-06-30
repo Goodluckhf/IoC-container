@@ -105,10 +105,13 @@
           "release": "patch"
         }
       ]
-    },
-    "pkgRoot": "dist"
+    }
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "files": [
+    "dist/**/*.*",
+    "!dist/**/*.test.*"
+  ]
 }
