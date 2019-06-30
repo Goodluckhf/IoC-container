@@ -22,7 +22,7 @@ import {Container} from '@ukitgroup/ioc';
 class ServiceA {}
 
 // First of all you have to define DI config:
-const diManifest = {
+const moduleManifest = {
  moduleName: 'module',
  providers: [
    {
@@ -35,8 +35,9 @@ const diManifest = {
 
 
 // Then in your composition root just create container
-Container.loadManifests([diManifest]);
-Container.compile();
+const container = new Container();
+container.loadManifests([moduleManifest]);
+container.compile();
 ```
 
 #### Provider types
@@ -64,7 +65,7 @@ const providerByValue = {
 // You can provide by factory function
 // Also resolved dependencies will be resolved automatically
 const providerByFactory = {
-	token: 'connectionUri',
+	token: 'ServiceA',
 	useFactory: (serviceB) => {
 	  return new ServiceA(serviceB)
 	},
@@ -133,6 +134,7 @@ class Entity {
 }
 
 class Example {
+  // You can inject Constructor with resolved dependencies
   constructor(Entity) {
     this.Entity = Entity;
   }
@@ -140,11 +142,12 @@ class Example {
   doSomething() {
     // Now you still have to provide rest arguments
     // And all dependencies has already resolved
-    const a = new Entity('test');
+    const a = new this.Entity('test');
     // ...
   }
 }
 
+// Of course there are some config parameters to make this magic work :)
 const moduleManifest = {
   moduleName: 'moduleB',
 	providers: [
@@ -166,3 +169,28 @@ const moduleManifest = {
 	],
 }
 ```
+
+### Composition root
+Usually you have composition root in you application.
+It's the only place where you can use `container.get`
+```javascript
+const moduleManifest = {
+ moduleName: 'moduleA',
+ providers: [
+   //... other providers
+   {
+	 isPublic: true,
+	 token: 'httpPort',
+	 useValue: 3000,
+   },
+ ],
+};
+
+const container = new Container();
+container.loadManifests([moduleManifest]);
+container.compile();
+
+// You can get only public providers
+const port = container.get('moduleA', 'httpPort');
+http.listen(port);
+``` 
