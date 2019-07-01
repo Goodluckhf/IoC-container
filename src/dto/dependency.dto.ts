@@ -1,5 +1,6 @@
 import { buildPublicToken } from '../helpers';
-import { DependencyInterface, DependencyType, Token } from '../internal-types';
+import { DependencyInterface, Token } from '../internal-types';
+import { DependencyType } from '../public-interfaces/dependency.interface';
 
 export class DependencyDto implements DependencyInterface {
   public readonly token: Token;

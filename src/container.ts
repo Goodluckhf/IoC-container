@@ -1,5 +1,4 @@
 import { ContainerInterface } from './container.interface';
-import { ManifestInterface } from './dto/manifest.interface';
 import { buildPublicToken } from './helpers';
 import { Module } from './module';
 import { Injector } from './injector';
@@ -14,6 +13,8 @@ import {
 } from './internal-types';
 import { InstanceWrapperFactoryInterface } from './instance-wrapper-factory.interface';
 import { ConfigParserInterface } from './config-parser.interface';
+import { ManifestInterface as publicManifestInterface } from './public-interfaces/manifest.interface';
+import { ManifestInterface } from './dto/manifest.interface';
 
 export class Container implements ContainerInterface {
   private readonly instanceWrapperFactory: InstanceWrapperFactoryInterface;
@@ -38,10 +39,12 @@ export class Container implements ContainerInterface {
     this.compiled = false;
   }
 
-  public loadManifests(manifestsData: ManifestInterface[]) {
-    const parsedManifest = this.configParser.parse(manifestsData);
+  public loadManifests(manifestsData: publicManifestInterface[]) {
+    const parsedManifests: ManifestInterface[] = this.configParser.parse(
+      manifestsData,
+    );
 
-    parsedManifest.forEach(manifest => {
+    parsedManifests.forEach(manifest => {
       const newModule = new Module(this.instanceWrapperFactory, manifest);
       if (this.modules.has(newModule.name)) {
         throw new ModuleHasAlreadyExists().combine({ module: newModule.name });

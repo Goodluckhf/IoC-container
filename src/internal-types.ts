@@ -10,15 +10,6 @@ export interface ClassType {
 
 export type Token = string;
 
-export interface DependencyOptions {
-  autoFactory?: boolean;
-  fromModule?: string;
-}
-
-export type CustomDependencyType = [Token, DependencyOptions];
-
-export type DependencyType = Token | CustomDependencyType;
-
 // Due to circular dependency
 export interface ModuleInterface {
   readonly name: string;
