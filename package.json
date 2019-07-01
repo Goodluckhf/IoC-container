@@ -85,7 +85,9 @@
     ]
   },
   "dependencies": {
-    "eerror": "2.0.0"
+    "class-transformer": "^0.2.3",
+    "eerror": "2.0.0",
+    "reflect-metadata": "^0.1.13"
   },
   "husky": {
     "hooks": {
