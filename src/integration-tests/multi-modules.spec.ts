@@ -1,6 +1,6 @@
 // Module A
 import { Container } from '../container';
-import { ManifestInterface } from '../manifest.interface';
+import { ManifestInterface } from '../dto/manifest.interface';
 import { NotFoundProviderDefinitionError } from '../errors/not-found-provider-definition.error';
 import { ModuleHasAlreadyExists } from '../errors/module-has-already-exists.error';
 

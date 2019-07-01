@@ -1,9 +1,9 @@
 import { InstanceWrapperFactoryInterface } from './instance-wrapper-factory.interface';
-import { ProviderInterface } from './provider.interface';
+import { ProviderInterface } from './dto/provider.interface';
 import { ValueInstanceWrapper } from './instance-wrappers/value-instance-wrapper';
 import { ClassInstanceWrapper } from './instance-wrappers/class-instance-wrapper';
 import { FactoryInstanceWrapper } from './instance-wrappers/factory-instance-wrapper';
-import { Dependency } from './dependency';
+import { DependencyDto } from './dto/dependency.dto';
 import { InstanceWrapperInterface, ModuleInterface } from './internal-types';
 
 export class InstanceWrapperFactory implements InstanceWrapperFactoryInterface {
@@ -29,7 +29,7 @@ export class InstanceWrapperFactory implements InstanceWrapperFactoryInterface {
 
     if (typeof provider.useClass !== 'undefined') {
       const dependencies = dependenciesDefinition.map(
-        dependency => new Dependency(dependency),
+        dependency => new DependencyDto(dependency),
       );
       return new ClassInstanceWrapper(moduleContext, {
         ...commonInstanceArgs,
@@ -41,7 +41,7 @@ export class InstanceWrapperFactory implements InstanceWrapperFactoryInterface {
 
     if (typeof provider.useFactory !== 'undefined') {
       const dependencies = dependenciesDefinition.map(
-        dependency => new Dependency(dependency),
+        dependency => new DependencyDto(dependency),
       );
       return new FactoryInstanceWrapper(moduleContext, {
         ...commonInstanceArgs,

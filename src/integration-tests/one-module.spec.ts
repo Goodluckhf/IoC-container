@@ -1,4 +1,4 @@
-import { ManifestInterface } from '../manifest.interface';
+import { ManifestInterface } from '../dto/manifest.interface';
 import { Container } from '../container';
 import { NotFoundProviderDefinitionError } from '../errors/not-found-provider-definition.error';
 import { RequiredAutoFactoryDefinitionError } from '../errors/required-autofactory-definition.error';

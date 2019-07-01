@@ -1,4 +1,4 @@
-import { ManifestInterface } from './manifest.interface';
+import { ManifestInterface } from './dto/manifest.interface';
 import { Token } from './internal-types';
 
 export interface ContainerInterface {

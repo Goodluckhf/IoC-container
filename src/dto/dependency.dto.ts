@@ -1,7 +1,7 @@
-import { buildPublicToken } from './helpers';
-import { DependencyInterface, DependencyType, Token } from './internal-types';
+import { buildPublicToken } from '../helpers';
+import { DependencyInterface, DependencyType, Token } from '../internal-types';
 
-export class Dependency implements DependencyInterface {
+export class DependencyDto implements DependencyInterface {
   public readonly token: Token;
 
   public readonly fromModule: string;

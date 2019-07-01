@@ -1,5 +1,5 @@
 import { ContainerInterface } from './container.interface';
-import { ManifestInterface } from './manifest.interface';
+import { ManifestInterface } from './dto/manifest.interface';
 import { buildPublicToken } from './helpers';
 import { InstanceWrapperFactory } from './instance-wrapper-factory';
 import { Module } from './module';

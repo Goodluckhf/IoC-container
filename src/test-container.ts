@@ -1,5 +1,5 @@
 import { Container } from './container';
-import { ProviderInterface } from './provider.interface';
+import { ProviderInterface } from './dto/provider.interface';
 import { Token } from './internal-types';
 
 const testModuleName = 'testModule';

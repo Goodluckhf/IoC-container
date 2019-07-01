@@ -1,4 +1,4 @@
-import { ClassType, DependencyType } from './internal-types';
+import { ClassType, DependencyInterface } from '../internal-types';
 
 export interface ProviderInterface {
   token: string;
@@ -10,7 +10,7 @@ export interface ProviderInterface {
   /**
    * Arguments of constructor
    */
-  dependencies?: DependencyType[];
+  dependencies?: DependencyInterface[];
 
   /**
    * Provide by class

@@ -1,6 +1,6 @@
 import { InstanceWrapperFactoryInterface } from './instance-wrapper-factory.interface';
-import { ManifestInterface } from './manifest.interface';
-import { ProviderInterface } from './provider.interface';
+import { ManifestInterface } from './dto/manifest.interface';
+import { ProviderInterface } from './dto/provider.interface';
 import { TokenAlreadyUsedError } from './errors/token-already-used.error';
 import {
   InstanceWrapperInterface,

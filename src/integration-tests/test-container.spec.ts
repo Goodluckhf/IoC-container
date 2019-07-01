@@ -1,5 +1,5 @@
 import { TestContainer } from '../test-container';
-import { ManifestInterface } from '../manifest.interface';
+import { ManifestInterface } from '../dto/manifest.interface';
 
 class ServiceA {}
 
