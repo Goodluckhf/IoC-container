@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { TestContainer } from '../test-container';
 import { ManifestInterface } from '../dto/manifest.interface';
 

@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { Container } from './container';
 import { AlreadyCompiledError } from './errors/already-compiled.error';
 

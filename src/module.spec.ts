@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { Module } from './module';
 import { TokenAlreadyUsedError } from './errors/token-already-used.error';
 

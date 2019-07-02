@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { Container } from '..';
 import { NotFoundProviderDefinitionError } from '../errors/not-found-provider-definition.error';
 import { ModuleHasAlreadyExists } from '../errors/module-has-already-exists.error';
