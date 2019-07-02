@@ -1,4 +1,4 @@
-import { Container } from './container';
+import { Container } from './index';
 import { ProviderInterface } from './dto/provider.interface';
 import { Token } from './internal-types';
 
