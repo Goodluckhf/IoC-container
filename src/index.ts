@@ -1,9 +1,11 @@
+import 'reflect-metadata';
 import { Container as DIContainer } from './container';
 import { InstanceWrapperFactory } from './instance-wrapper-factory';
 import { ConfigParser } from './config-parser';
 
 // export Facade
-export class Container {
+export class Container extends DIContainer {
+  // @ts-ignore
   public constructor() {
     const instanceWrapperFactory = new InstanceWrapperFactory();
     const configParser = new ConfigParser();

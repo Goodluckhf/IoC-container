@@ -1,8 +1,8 @@
 // Module A
-import { Container } from '../container';
-import { ManifestInterface } from '../dto/manifest.interface';
+import { Container } from '..';
 import { NotFoundProviderDefinitionError } from '../errors/not-found-provider-definition.error';
 import { ModuleHasAlreadyExists } from '../errors/module-has-already-exists.error';
+import { ManifestInterface } from '../public-interfaces/manifest.interface';
 
 class ServiceA {}
 class ServiceB {
