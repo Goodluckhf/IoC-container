@@ -12,14 +12,14 @@ import {
   Token,
 } from './internal-types';
 import { InstanceWrapperFactoryInterface } from './instance-wrapper-factory.interface';
-import { ConfigParserInterface } from './config-parser.interface';
+import { ManifestTransformerInterface } from './manifest-transformer.interface';
 import { ManifestInterface as publicManifestInterface } from './public-interfaces/manifest.interface';
 import { ManifestInterface } from './dto/manifest.interface';
 
 export class Container implements ContainerInterface {
   private readonly instanceWrapperFactory: InstanceWrapperFactoryInterface;
 
-  private readonly configParser: ConfigParserInterface;
+  private readonly manifestTransformer: ManifestTransformerInterface;
 
   private readonly publicProviders: Map<Token, InstanceWrapperInterface>;
 
@@ -29,10 +29,10 @@ export class Container implements ContainerInterface {
 
   public constructor(
     instanceWrapperAbstractFactory: InstanceWrapperFactoryInterface,
-    configParser: ConfigParserInterface,
+    manifestTransformer: ManifestTransformerInterface,
   ) {
     this.instanceWrapperFactory = instanceWrapperAbstractFactory;
-    this.configParser = configParser;
+    this.manifestTransformer = manifestTransformer;
 
     this.publicProviders = new Map();
     this.modules = new Map();
@@ -40,7 +40,7 @@ export class Container implements ContainerInterface {
   }
 
   public loadManifests(manifestsData: publicManifestInterface[]) {
-    const parsedManifests: ManifestInterface[] = this.configParser.parse(
+    const parsedManifests: ManifestInterface[] = this.manifestTransformer.transform(
       manifestsData,
     );
 

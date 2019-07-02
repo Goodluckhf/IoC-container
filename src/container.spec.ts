@@ -11,7 +11,7 @@ class TestServiceB {
 }
 
 describe('IoC container', () => {
-  it('should parse manifest to module', () => {
+  it('should transform manifest to module', () => {
     const container = new Container();
     const diManifest = {
       moduleName: 'tesModule',

@@ -1,15 +1,15 @@
 import 'reflect-metadata';
 import { Container as DIContainer } from './container';
 import { InstanceWrapperFactory } from './instance-wrapper-factory';
-import { ConfigParser } from './config-parser';
+import { ManifestTransformer } from './manifest-transformer';
 
 // export Facade
 export class Container extends DIContainer {
   // @ts-ignore
   public constructor() {
     const instanceWrapperFactory = new InstanceWrapperFactory();
-    const configParser = new ConfigParser();
-    return new DIContainer(instanceWrapperFactory, configParser);
+    const manifestTransformer = new ManifestTransformer();
+    return new DIContainer(instanceWrapperFactory, manifestTransformer);
   }
 }
 
