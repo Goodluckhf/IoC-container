@@ -31,4 +31,38 @@ describe('Module', () => {
       expect(e).toBeInstanceOf(TokenAlreadyUsedError);
     }
   });
+
+  it('should get public providers', () => {
+    const diManifest = {
+      moduleName: 'tesModule',
+      providers: [
+        {
+          isPublic: true,
+          token: 'ServiceA',
+          useValue: 10,
+        },
+        {
+          token: 'ServiceB',
+          useValue: 11,
+        },
+      ],
+    };
+
+    const newModule = new Module(
+      {
+        // @ts-ignore
+        create(value) {
+          return value;
+        },
+      },
+      diManifest,
+    );
+
+    const publicProviders = newModule.getPublicProviders();
+    const publicProvider = publicProviders.find(
+      object => object.token === 'ServiceA',
+    );
+    expect(publicProviders.length).toEqual(1);
+    expect(publicProvider).not.toBeNull();
+  });
 });
