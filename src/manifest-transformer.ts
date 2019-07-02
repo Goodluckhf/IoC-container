@@ -14,7 +14,8 @@ export class ManifestTransformer implements ManifestTransformerInterface {
       const manifest = plainToClass(ManifestDto, manifestData);
       // https://github.com/typestack/class-transformer/issues/276
       // @TODO: Переделать полностью на plainToClass
-      manifest.providers.forEach((provider, key) => {
+      const providers = manifest.providers || [];
+      providers.forEach((provider, key) => {
         if (manifestData.providers[key].useValue) {
           // eslint-disable-next-line no-param-reassign
           provider.useValue = manifestData.providers[key].useValue;
@@ -31,9 +32,12 @@ export class ManifestTransformer implements ManifestTransformerInterface {
         }
       });
 
-      const errors = validateSync(manifest);
+      const errors = validateSync(manifest, {
+        skipMissingProperties: false,
+        forbidNonWhitelisted: true,
+      });
       if (errors.length > 0) {
-        throw new ValidationError().combine(errors);
+        throw new ValidationError().combine({ errors });
       }
       return manifest;
     });
