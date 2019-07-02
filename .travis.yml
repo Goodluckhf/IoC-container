@@ -47,6 +47,8 @@ jobs:
         - npm run report-coverage
     - stage: release
       node_js: '8'
+      before_script:
+        - npm prune
       script:
         - npm run build
         - npm run semantic-release
