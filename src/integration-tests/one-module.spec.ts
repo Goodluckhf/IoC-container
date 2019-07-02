@@ -2,6 +2,7 @@ import { Container } from '..';
 import { NotFoundProviderDefinitionError } from '../errors/not-found-provider-definition.error';
 import { RequiredAutoFactoryDefinitionError } from '../errors/required-autofactory-definition.error';
 import { ManifestInterface } from '../public-interfaces/manifest.interface';
+import { CircularDependencyError } from '../errors/circular-dependency.error';
 
 class TestServiceA {}
 class TestServiceB {
@@ -187,5 +188,33 @@ describe('Inverse of Control: one module', function() {
 
     expect(serviceB).toBeInstanceOf(TestServiceB);
     expect(new serviceB.testServiceA()).toBeInstanceOf(TestServiceA);
+  });
+
+  it('should throw circular dependency', () => {
+    expect.assertions(1);
+
+    const container = new Container();
+    const diManifest: ManifestInterface = {
+      moduleName: 'tesModule',
+      providers: [
+        {
+          token: 'ServiceA',
+          useClass: TestServiceA,
+          dependencies: ['ServiceB'],
+        },
+        {
+          token: 'ServiceB',
+          useClass: TestServiceB,
+          dependencies: ['ServiceA'],
+        },
+      ],
+    };
+
+    container.loadManifests([diManifest]);
+    try {
+      container.compile();
+    } catch (e) {
+      expect(e).toBeInstanceOf(CircularDependencyError);
+    }
   });
 });

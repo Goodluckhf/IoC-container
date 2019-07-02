@@ -1,9 +1,10 @@
-// Module A
 import { Container } from '..';
 import { NotFoundProviderDefinitionError } from '../errors/not-found-provider-definition.error';
 import { ModuleHasAlreadyExists } from '../errors/module-has-already-exists.error';
 import { ManifestInterface } from '../public-interfaces/manifest.interface';
+import { CircularDependencyError } from '../errors/circular-dependency.error';
 
+// Module A
 class ServiceA {}
 class ServiceB {
   constructor(testServiceA) {
@@ -178,5 +179,45 @@ describe('Inverse of Control: multi modules', function() {
     expect(instanceOfService.arg1).toEqual(10);
     expect(instanceOfService.arg2).toEqual(false);
     expect(instanceOfService.serviceA).toBeInstanceOf(ServiceA);
+  });
+
+  it('should throw circular dependency error with long chain', () => {
+    expect.assertions(1);
+    const container = new Container();
+    const diManifestA: ManifestInterface = {
+      moduleName: 'ModuleA',
+      providers: [
+        {
+          isPublic: true,
+          token: 'ServiceC',
+          useClass: ServiceC,
+          dependencies: [['ServiceA', { fromModule: 'ModuleB' }]],
+        },
+      ],
+    };
+
+    const diManifestB: ManifestInterface = {
+      moduleName: 'ModuleB',
+      providers: [
+        {
+          isPublic: true,
+          token: 'ServiceA',
+          useClass: ServiceA,
+          dependencies: ['ServiceB'],
+        },
+        {
+          token: 'ServiceB',
+          useClass: ServiceB,
+          dependencies: [['ServiceC', { fromModule: 'ModuleA' }]],
+        },
+      ],
+    };
+
+    container.loadManifests([diManifestA, diManifestB]);
+    try {
+      container.compile();
+    } catch (e) {
+      expect(e).toBeInstanceOf(CircularDependencyError);
+    }
   });
 });
