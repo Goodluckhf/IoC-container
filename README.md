@@ -217,3 +217,4 @@ More examples you can find in [integration tests](https://github.com/Goodluckhf/
 ### TODO:
 * support decorators with typescript
 * TestContainer for integration tests
+* Get public providers by tag
