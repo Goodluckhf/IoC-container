@@ -6,7 +6,7 @@ import { ManifestTransformer } from './manifest-transformer';
 
 const testModuleName = 'testModule';
 
-class TestContainer {
+class TestIoCContainer {
   private container: Container;
 
   public constructor(manifests) {
@@ -37,4 +37,4 @@ class TestContainer {
   }
 }
 
-export { TestContainer };
+export { TestIoCContainer };

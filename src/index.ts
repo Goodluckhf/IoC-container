@@ -13,4 +13,4 @@ export class IoCContainer extends DIContainer {
   }
 }
 
-export { TestContainer } from './test-container';
+export { TestIoCContainer } from './test-ioc-container';

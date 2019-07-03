@@ -198,12 +198,12 @@ http.listen(port);
 ### Testing
 We provide a comfortable way for testing
 ```javascript
-import {TestContainer} from '@ukitgroup/ioc';
+import { TestIoCContainer } from '@ukitgroup/ioc';
 describe('Unit test', () => {
 	const ctx = {}
 	
 	beforeEach(() => {
-		ctx.container = TestContainer.createTestModule([
+		ctx.container = TestIoCContainer.createTestModule([
 		  //... providers definition with mocks
 		])
 		ctx.container.compile();
@@ -222,5 +222,5 @@ More examples you can find in [integration tests](https://github.com/Goodluckhf/
 
 ### TODO:
 * support decorators with typescript
-* TestContainer for integration tests
+* TestIoCContainer for integration tests
 * Get public providers by tag
