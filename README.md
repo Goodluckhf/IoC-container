@@ -208,6 +208,12 @@ describe('Unit test', () => {
 		])
 		ctx.container.compile();
 	});
+	
+	it('test case', () => {
+	  // Here you can just get provider by token
+	  // You don't have to transmit module name
+	  const provider = ctx.container.get('providerToken');
+	});
 })
 ```
 
