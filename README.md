@@ -17,7 +17,7 @@ Declarative and simple IoC container for node.js applications
 
 ### Usage
 ```javascript
-import {Container} from '@ukitgroup/ioc';
+import { IoCContainer } from '@ukitgroup/ioc';
 
 class ServiceA {}
 
@@ -35,7 +35,7 @@ const moduleManifest = {
 
 
 // Then in your composition root just create container
-const container = new Container();
+const container = new IoCContainer();
 container.loadManifests([moduleManifest]);
 container.compile();
 ```
@@ -186,7 +186,7 @@ const moduleManifest = {
  ],
 };
 
-const container = new Container();
+const container = new IoCContainer();
 container.loadManifests([moduleManifest]);
 container.compile();
 

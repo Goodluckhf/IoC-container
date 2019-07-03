@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Container } from '..';
+import { IoCContainer } from '..';
 import { NotFoundProviderDefinitionError } from '../errors/not-found-provider-definition.error';
 import { RequiredAutoFactoryDefinitionError } from '../errors/required-autofactory-definition.error';
 import { ManifestInterface } from '../public-interfaces/manifest.interface';
@@ -31,7 +31,7 @@ describe('Inverse of Control: one module', function() {
       ],
     };
 
-    const container = new Container();
+    const container = new IoCContainer();
     container.loadManifests([diManifest]);
     container.compile();
     this.container = container;
@@ -73,7 +73,7 @@ describe('Inverse of Control: one module', function() {
       ],
     };
 
-    const container = new Container();
+    const container = new IoCContainer();
     container.loadManifests([diManifest]);
     container.compile();
     expect(serviceInjectedToFactory).toBeTruthy();
@@ -95,7 +95,7 @@ describe('Inverse of Control: one module', function() {
       ],
     };
 
-    const container = new Container();
+    const container = new IoCContainer();
     container.loadManifests([diManifest]);
     container.compile();
 
@@ -122,7 +122,7 @@ describe('Inverse of Control: one module', function() {
       ],
     };
 
-    const container = new Container();
+    const container = new IoCContainer();
     container.loadManifests([diManifest]);
     container.compile();
 
@@ -153,7 +153,7 @@ describe('Inverse of Control: one module', function() {
       ],
     };
 
-    const container = new Container();
+    const container = new IoCContainer();
     container.loadManifests([diManifest]);
 
     try {
@@ -181,7 +181,7 @@ describe('Inverse of Control: one module', function() {
       ],
     };
 
-    const container = new Container();
+    const container = new IoCContainer();
     container.loadManifests([diManifest]);
     container.compile();
 
@@ -194,7 +194,7 @@ describe('Inverse of Control: one module', function() {
   it('should throw circular dependency', () => {
     expect.assertions(1);
 
-    const container = new Container();
+    const container = new IoCContainer();
     const diManifest: ManifestInterface = {
       moduleName: 'tesModule',
       providers: [

@@ -4,7 +4,7 @@ import { InstanceWrapperFactory } from './instance-wrapper-factory';
 import { ManifestTransformer } from './manifest-transformer';
 
 // export Facade
-export class Container extends DIContainer {
+export class IoCContainer extends DIContainer {
   // @ts-ignore
   public constructor() {
     const instanceWrapperFactory = new InstanceWrapperFactory();

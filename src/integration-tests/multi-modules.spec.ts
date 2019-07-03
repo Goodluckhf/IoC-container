@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Container } from '..';
+import { IoCContainer } from '..';
 import { NotFoundProviderDefinitionError } from '../errors/not-found-provider-definition.error';
 import { ModuleHasAlreadyExists } from '../errors/module-has-already-exists.error';
 import { ManifestInterface } from '../public-interfaces/manifest.interface';
@@ -56,7 +56,7 @@ describe('Inverse of Control: multi modules', function() {
       ],
     };
 
-    const container = new Container();
+    const container = new IoCContainer();
     container.loadManifests([moduleAManifest, moduleBManifest]);
 
     try {
@@ -97,7 +97,7 @@ describe('Inverse of Control: multi modules', function() {
       ],
     };
 
-    const container = new Container();
+    const container = new IoCContainer();
     container.loadManifests([moduleAManifest, moduleBManifest]);
 
     container.compile();
@@ -132,7 +132,7 @@ describe('Inverse of Control: multi modules', function() {
       ],
     };
 
-    const container = new Container();
+    const container = new IoCContainer();
     try {
       container.loadManifests([manifestA, manifestB]);
       container.compile();
@@ -170,7 +170,7 @@ describe('Inverse of Control: multi modules', function() {
       ],
     };
 
-    const container = new Container();
+    const container = new IoCContainer();
     container.loadManifests([manifestA]);
     container.compile();
 
@@ -184,7 +184,7 @@ describe('Inverse of Control: multi modules', function() {
 
   it('should throw circular dependency error with long chain', () => {
     expect.assertions(1);
-    const container = new Container();
+    const container = new IoCContainer();
     const diManifestA: ManifestInterface = {
       moduleName: 'ModuleA',
       providers: [
