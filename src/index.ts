@@ -14,3 +14,8 @@ export class IoCContainer extends Container {
 }
 
 export { TestIoCContainer } from './test-ioc-container';
+
+export * from './public-interfaces/manifest.interface';
+export * from './public-interfaces/dependency.interface';
+export * from './public-interfaces/provider.interface';
+export * from './container.interface';
