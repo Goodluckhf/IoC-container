@@ -217,6 +217,14 @@ describe('Unit test', () => {
 })
 ```
 
+### IDE will help you
+if you don't use typescript, `type hinting` still can help you:
+![example](./type-hinting_docs.png)
+
+Just be sure that you use type definitions only from `./public-interfaces`.
+**Internal types can be changed not in major release**
+
+
 More examples you can find in [integration tests](https://github.com/Goodluckhf/IoC-container/tree/master/src/integration-tests)
 
 
