@@ -1,4 +1,4 @@
-import { ProviderInterface } from './provider.interface';
+import { ProviderInterface } from './dto/provider.interface';
 import { InstanceWrapperInterface, ModuleInterface } from './internal-types';
 
 export interface InstanceWrapperFactoryInterface {

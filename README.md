@@ -17,7 +17,7 @@ Declarative and simple IoC container for node.js applications
 
 ### Usage
 ```javascript
-import {Container} from '@ukitgroup/ioc';
+import { IoCContainer } from '@ukitgroup/ioc';
 
 class ServiceA {}
 
@@ -35,7 +35,7 @@ const moduleManifest = {
 
 
 // Then in your composition root just create container
-const container = new Container();
+const container = new IoCContainer();
 container.loadManifests([moduleManifest]);
 container.compile();
 ```
@@ -186,7 +186,7 @@ const moduleManifest = {
  ],
 };
 
-const container = new Container();
+const container = new IoCContainer();
 container.loadManifests([moduleManifest]);
 container.compile();
 
@@ -198,15 +198,21 @@ http.listen(port);
 ### Testing
 We provide a comfortable way for testing
 ```javascript
-import {TestContainer} from '@ukitgroup/ioc';
+import { TestIoCContainer } from '@ukitgroup/ioc';
 describe('Unit test', () => {
 	const ctx = {}
 	
 	beforeEach(() => {
-		ctx.container = TestContainer.createTestModule([
+		ctx.container = TestIoCContainer.createTestModule([
 		  //... providers definition with mocks
 		])
 		ctx.container.compile();
+	});
+	
+	it('test case', () => {
+	  // Here you can just get provider by token
+	  // You don't have to transmit module name
+	  const provider = ctx.container.get('providerToken');
 	});
 })
 ```
@@ -216,4 +222,5 @@ More examples you can find in [integration tests](https://github.com/Goodluckhf/
 
 ### TODO:
 * support decorators with typescript
-* TestContainer for integration tests
+* TestIoCContainer for integration tests
+* Get public providers by tag

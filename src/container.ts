@@ -1,7 +1,5 @@
 import { ContainerInterface } from './container.interface';
-import { ManifestInterface } from './manifest.interface';
 import { buildPublicToken } from './helpers';
-import { InstanceWrapperFactory } from './instance-wrapper-factory';
 import { Module } from './module';
 import { Injector } from './injector';
 import { ModuleHasAlreadyExists } from './errors/module-has-already-exists.error';
@@ -13,24 +11,41 @@ import {
   ModuleInterface,
   Token,
 } from './internal-types';
+import { InstanceWrapperFactoryInterface } from './instance-wrapper-factory.interface';
+import { ManifestTransformerInterface } from './manifest-transformer.interface';
+import { ManifestInterface as publicManifestInterface } from './public-interfaces/manifest.interface';
+import { ManifestInterface } from './dto/manifest.interface';
 
 export class Container implements ContainerInterface {
+  private readonly instanceWrapperFactory: InstanceWrapperFactoryInterface;
+
+  private readonly manifestTransformer: ManifestTransformerInterface;
+
   private readonly publicProviders: Map<Token, InstanceWrapperInterface>;
 
   private readonly modules: Map<string, ModuleInterface>;
 
   private compiled: boolean;
 
-  public constructor() {
+  public constructor(
+    instanceWrapperAbstractFactory: InstanceWrapperFactoryInterface,
+    manifestTransformer: ManifestTransformerInterface,
+  ) {
+    this.instanceWrapperFactory = instanceWrapperAbstractFactory;
+    this.manifestTransformer = manifestTransformer;
+
     this.publicProviders = new Map();
     this.modules = new Map();
     this.compiled = false;
   }
 
-  public loadManifests(manifests: ManifestInterface[]) {
-    const instanceWrapperFactory = new InstanceWrapperFactory();
-    manifests.forEach(manifest => {
-      const newModule = new Module(instanceWrapperFactory, manifest);
+  public loadManifests(manifestsData: publicManifestInterface[]) {
+    const parsedManifests: ManifestInterface[] = this.manifestTransformer.transform(
+      manifestsData,
+    );
+
+    parsedManifests.forEach(manifest => {
+      const newModule = new Module(this.instanceWrapperFactory, manifest);
       if (this.modules.has(newModule.name)) {
         throw new ModuleHasAlreadyExists().combine({ module: newModule.name });
       }

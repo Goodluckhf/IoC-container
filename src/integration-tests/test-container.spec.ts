@@ -1,10 +1,11 @@
-import { TestContainer } from '../test-container';
-import { ManifestInterface } from '../manifest.interface';
+import 'reflect-metadata';
+import { TestIoCContainer } from '../test-ioc-container';
+import { ManifestInterface } from '../dto/manifest.interface';
 
 class ServiceA {}
 
-describe.skip('TestContainer', () => {
-  it('should override providers', () => {
+describe('TestContainer', () => {
+  it.skip('should override providers', () => {
     const diManifest: ManifestInterface = {
       moduleName: 'module',
       providers: [
@@ -16,7 +17,7 @@ describe.skip('TestContainer', () => {
       ],
     };
 
-    const testContainerAdapter = new TestContainer([diManifest]);
+    const testContainerAdapter = new TestIoCContainer([diManifest]);
     // @ts-ignore
     testContainerAdapter.override([
       { token: 'ServiceA', useValue: 10, isPublic: true },
@@ -25,5 +26,14 @@ describe.skip('TestContainer', () => {
 
     const serviceA = testContainerAdapter.get('ServiceA');
     expect(serviceA).toEqual(10);
+  });
+
+  it('can get provider without module', () => {
+    const testContainer = TestIoCContainer.createTestModule([
+      { isPublic: true, token: 'testToken', useValue: 10 },
+    ]);
+
+    testContainer.compile();
+    expect(testContainer.get('testToken')).toBe(10);
   });
 });

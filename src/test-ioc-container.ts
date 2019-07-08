@@ -1,14 +1,18 @@
 import { Container } from './container';
-import { ProviderInterface } from './provider.interface';
+import { ProviderInterface } from './dto/provider.interface';
 import { Token } from './internal-types';
+import { InstanceWrapperFactory } from './instance-wrapper-factory';
+import { ManifestTransformer } from './manifest-transformer';
 
 const testModuleName = 'testModule';
 
-class TestContainer {
+class TestIoCContainer {
   private container: Container;
 
   public constructor(manifests) {
-    this.container = new Container();
+    const instanceWrapperFactory = new InstanceWrapperFactory();
+    const manifestTransformer = new ManifestTransformer();
+    this.container = new Container(instanceWrapperFactory, manifestTransformer);
     this.container.loadManifests(manifests);
   }
 
@@ -33,4 +37,4 @@ class TestContainer {
   }
 }
 
-export { TestContainer };
+export { TestIoCContainer };

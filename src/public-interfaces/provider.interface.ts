@@ -1,4 +1,5 @@
-import { ClassType, DependencyType } from './internal-types';
+import { DependencyType } from './dependency.interface';
+import { ClassType } from '../internal-types';
 
 export interface ProviderInterface {
   token: string;
