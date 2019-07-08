@@ -1,5 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
   extends: [
     'eslint-config-airbnb-base',
     'plugin:@typescript-eslint/recommended',
@@ -10,13 +11,17 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
+    project: './tsconfig.json',
   },
   rules: {
-    '@typescript-eslint/no-parameter-properties': {
-      allows: ['private readonly'],
-    },
+    '@typescript-eslint/no-parameter-properties': [
+      'error',
+      {
+        allows: ['private readonly'],
+      },
+    ],
     '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/interface-name-prefix': 'always',
+    '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     'import/prefer-default-export': 'off',
     'no-useless-constructor': 'off',

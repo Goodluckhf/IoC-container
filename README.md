@@ -2,7 +2,7 @@
 Declarative and simple IoC container for node.js applications
 
 ![Travis](https://img.shields.io/travis/Goodluckhf/IoC-container/master.svg?style=flat-square)
-[![Coverage Status](https://coveralls.io/repos/github/Goodluckhf/IoC-container/badge.svg?branch=master)](https://coveralls.io/github/Goodluckhf/IoC-container?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Goodluckhf/IoC-container/badge.svg?branch=master)](https://coveralls.io/github/Goodluckhf/IoC-container?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/Goodluckhf/IoC-container.svg)](https://greenkeeper.io/)
 ![node](https://img.shields.io/node/v/@ukitgroup/ioc.svg?style=flat-square)
 ![npm](https://img.shields.io/npm/v/@ukitgroup/ioc.svg?style=flat-square)
 
