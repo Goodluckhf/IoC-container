@@ -14,7 +14,7 @@ export class FactoryInstanceWrapper extends InstanceWrapper {
   public constructor(
     contextModule,
     {
-      dependencies,
+      dependencies = [],
       factory,
       ...instanceWrapperArguments
     }: FactoryInstanceWrapperArguments,

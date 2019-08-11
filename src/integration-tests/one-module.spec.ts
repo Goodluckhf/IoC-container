@@ -218,4 +218,36 @@ describe('Inverse of Control: one module', function() {
       expect(e).toBeInstanceOf(CircularDependencyError);
     }
   });
+
+  it('Should not throw error useClass without dependencies', () => {
+    const container = new IoCContainer();
+    const diManifest: ManifestInterface = {
+      moduleName: 'tesModule',
+      providers: [
+        {
+          token: 'TestServiceA',
+          useClass: TestServiceA,
+        },
+      ],
+    };
+
+    container.loadManifests([diManifest]);
+    container.compile();
+  });
+
+  it('Should not throw error useFactory without dependencies', () => {
+    const container = new IoCContainer();
+    const diManifest: ManifestInterface = {
+      moduleName: 'tesModule',
+      providers: [
+        {
+          token: 'TestServiceA',
+          useFactory: () => true,
+        },
+      ],
+    };
+
+    container.loadManifests([diManifest]);
+    container.compile();
+  });
 });
