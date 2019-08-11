@@ -39,6 +39,7 @@ module.exports = {
       },
       rules: {
         'no-console': 'off',
+        'max-classes-per-file': 'off',
         'import/no-extraneous-dependencies': 'off',
         'no-new': 'off',
         '@typescript-eslint/no-var-requires': 'off',
