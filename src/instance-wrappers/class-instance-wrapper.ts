@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { InstanceWrapper, InstanceWrapperArguments } from './instance-wrapper';
 import { ClassType, DependencyInterface } from '../internal-types';
 
