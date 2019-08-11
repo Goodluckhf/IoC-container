@@ -36,7 +36,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^24.0.15",
-    "@types/node": "^12.0.10",
+    "@types/node": "^12.7.1",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
     "coveralls": "^3.0.4",
@@ -50,7 +50,7 @@
     "lint-staged": "^9.1.0",
     "prettier": "^1.18.2",
     "rimraf": "^2.6.3",
-    "semantic-release": "^15.13.18",
+    "semantic-release": "^15.13.20",
     "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
     "tsconfig-paths": "^3.8.0",
