@@ -87,7 +87,7 @@
   "dependencies": {
     "class-transformer": "^0.2.3",
     "class-validator": "^0.9.1",
-    "eerror": "2.0.1",
+    "eerror": "3.0.0",
     "reflect-metadata": "^0.1.13"
   },
   "husky": {
