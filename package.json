@@ -50,7 +50,7 @@
     "lint-staged": "^9.1.0",
     "prettier": "^1.18.2",
     "rimraf": "^2.6.3",
-    "semantic-release": "^15.13.20",
+    "semantic-release": "^16.0.4",
     "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
     "tsconfig-paths": "^3.8.0",
