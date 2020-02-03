@@ -51,7 +51,7 @@
     "prettier": "^1.18.2",
     "rimraf": "^2.6.3",
     "semantic-release": "^15.13.20",
-    "ts-jest": "^24.0.2",
+    "ts-jest": "^25.2.0",
     "ts-node": "^8.3.0",
     "tsconfig-paths": "^3.8.0",
     "typescript": "^3.5.2"
